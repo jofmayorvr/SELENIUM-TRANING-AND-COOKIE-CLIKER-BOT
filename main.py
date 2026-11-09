@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-url = "https://www.amazon.com.tr/Apple-Kablosuz-Kulakl%C4%B1k-Engelleme-Bluetooth/dp/B0FQF59PPW"
+url = "https://www.python.org/"
 
 #keep chrome open
 chrome_options = webdriver.ChromeOptions()
@@ -10,10 +10,15 @@ chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=chrome_options)
 driver.get(url)
 
-price_as_whole = driver.find_element(By.XPATH, '//*[@id="corePriceDisplay_desktop_feature_div"]/div/div[1]/span[3]/span[2]/span[1]').text
-price_as_fraction = driver.find_element(By.XPATH,'//*[@id="corePriceDisplay_desktop_feature_div"]/div/div[1]/span[3]/span[2]/span[2]').text
+search_bar = driver.find_element(By.NAME, "q")
+print(search_bar.get_attribute("class"))
 
-print(f'the price is {price_as_whole},{price_as_fraction} ')
+button = driver.find_element(By.ID, "submit")
+print(button.size)
+
+documentation_link = driver.find_element(By.CSS_SELECTOR, ".documentation-widget a")
+print(documentation_link.text)
+
 
 
 
