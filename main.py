@@ -10,19 +10,26 @@ chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=chrome_options)
 driver.get(url)
 
-search_bar = driver.find_element(By.NAME, "q")
-print(search_bar.get_attribute("class"))
+events = driver.find_elements(By.CSS_SELECTOR,'.event-widget ul a')
+dates = driver.find_elements(By.CSS_SELECTOR,'.event-widget ul time')
 
-button = driver.find_element(By.ID, "submit")
-print(button.size)
+names=[]
+for event in events:
+    names.append(event.text)
 
-documentation_link = driver.find_element(By.CSS_SELECTOR, ".documentation-widget a")
-print(documentation_link.text)
+stripped_dates=[]
+for date in dates:
+    stripped_dates.append(date.text)
 
+event_dict={}
 
+for n in range(len(names)):
+    event_dict[n] = {
+        'name':names[n],
+        'date':stripped_dates[n],
+    }
 
-
-
+print(event_dict)
 
 #only closes single tab
 #driver.close()
