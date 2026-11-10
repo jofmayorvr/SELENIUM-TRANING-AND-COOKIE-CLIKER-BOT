@@ -10,14 +10,18 @@ chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=chrome_options)
 driver.get(url)
 
+#find and fill first name
 first_name_input = driver.find_element(By.XPATH,'//*[@id="signup-form"]/input[1]')
 first_name_input.send_keys("jofmayor")
 
+#find and fill last name
 last_name_input = driver.find_element(By.XPATH,'//*[@id="signup-form"]/input[2]')
 last_name_input.send_keys("namado")
 
+#find and fill email
 email_input = driver.find_element(By.XPATH,'//*[@id="signup-form"]/input[3]')
 email_input.send_keys("qwerqrew@gqwerqwer.com")
 
+#locating button and actions
 button = driver.find_element(By.XPATH,'//*[@id="signup-form"]/button')
 button.click()
